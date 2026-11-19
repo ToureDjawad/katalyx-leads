@@ -1,0 +1,40 @@
+# Génère 10 nouveaux leads chaque lundi à 7 h (heure de Paris) et les publie comme artefact.
+# Secrets à créer dans Settings > Secrets and variables > Actions :
+# ANTHROPIC_API_KEY, FRANCE_TRAVAIL_CLIENT_ID, FRANCE_TRAVAIL_CLIENT_SECRET, DROPCONTACT_API_KEY (optionnel).
+name: Leads hebdomadaires
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  leads:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+      - run: python -m leadgen
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FRANCE_TRAVAIL_CLIENT_ID: ${{ secrets.FRANCE_TRAVAIL_CLIENT_ID }}
+          FRANCE_TRAVAIL_CLIENT_SECRET: ${{ secrets.FRANCE_TRAVAIL_CLIENT_SECRET }}
+          DROPCONTACT_API_KEY: ${{ secrets.DROPCONTACT_API_KEY }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: leads
+          path: sortie/leads_*
+      # Mémorise les leads livrés pour que la semaine suivante en produise de nouveaux.
+      - run: |
+          git config user.name "katalyx-leads"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/historique.json
+          git diff --cached --quiet || git commit -m "Historique des leads du $(date +%F)"
+          git push
