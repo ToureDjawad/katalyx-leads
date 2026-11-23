@@ -1,0 +1,47 @@
+{
+  "200043396": {
+    "nom": "CA MAUBEUGE VAL DE SAMBRE (CAMVS)",
+    "temperature": "chaud",
+    "livre_le": "2026-11-23"
+  },
+  "200052678": {
+    "nom": "COLLECTIVITE TERRITORIALE DE GUYANE",
+    "temperature": "tiède",
+    "livre_le": "2026-11-23"
+  },
+  "911980274": {
+    "nom": "HOLOSOLIS",
+    "temperature": "tiède",
+    "livre_le": "2026-11-23"
+  },
+  "445244544": {
+    "nom": "AQUALIA FRANCE (SPIE)",
+    "temperature": "tiède",
+    "livre_le": "2026-11-23"
+  },
+  "811785088": {
+    "nom": "NAMKIN",
+    "temperature": "froid",
+    "livre_le": "2026-11-23"
+  },
+  "839912631": {
+    "nom": "HUMBIRD",
+    "temperature": "froid",
+    "livre_le": "2026-11-23"
+  },
+  "880418033": {
+    "nom": "WORMSENSING",
+    "temperature": "froid",
+    "livre_le": "2026-11-23"
+  },
+  "775258924": {
+    "nom": "SERVI DORYL (SERVI)",
+    "temperature": "froid",
+    "livre_le": "2026-11-23"
+  },
+  "880138326": {
+    "nom": "DEUTSCHE TELEKOM GLOBAL BUSINESS SOLUTIONS FRANCE SAS",
+    "temperature": "froid",
+    "livre_le": "2026-11-23"
+  }
+}
